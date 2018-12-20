@@ -29,6 +29,16 @@ npm run test
 npm run dev
 ```
 
+# GIT TREE
+
+| - Master
+
+| - | - Develop
+
+| - | - | - Readme
+
+| - | - | - Server
+
 # Contributors: 
 
 ### Gilles Kagarama

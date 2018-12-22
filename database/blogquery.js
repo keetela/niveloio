@@ -1,13 +1,16 @@
-import knex from "./knex";
+import knex from './knex';
 
 function Posts() {
-  return knex("blog");
+  return knex('blog');
 }
 
-function getAll() {
-  return Posts().select();
-}
+const getAll = () => Posts().select();
+
+const getOne = blogID => Posts()
+  .where('id', parseInt(blogID))
+  .first();
 
 module.exports = {
-  getAll: getAll
+  getAll,
+  getOne,
 };

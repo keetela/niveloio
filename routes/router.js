@@ -1,5 +1,5 @@
 import express from 'express';
-import queryblog from '../database/blogquery';
+import Post from '../controllers/blog';
 
 const router = express.Router();
 
@@ -9,15 +9,10 @@ router.get('/', (req, res, next) => {
   });
 });
 
-router.get('/api/v1/posts', (req, res, next) => {
-  queryblog
-    .getAll()
-    .then((blog) => {
-      res.status(200).json(blog);
-    })
-    .catch((error) => {
-      next(error);
-    });
-});
+//* ** GET all posts *** //
+router.get('/api/v1/posts', Post.getAllPosts);
+
+//* ** GET single posts *** //
+router.get('/api/v1/posts/:id', Post.getOnePost);
 
 export default router;

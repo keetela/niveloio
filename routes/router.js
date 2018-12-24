@@ -15,6 +15,9 @@ router.get('/api/v1/posts', Post.getAllPosts);
 //* ** GET single posts *** //
 router.get('/api/v1/posts/:id', Post.getOnePost);
 
+//* ** Create a new posts *** //
+router.post('/api/v1/posts', Post.createPost);
+
 //* ** Publish a post *** //
 router.put('/api/v1/posts/:id/publish', Post.publishPost);
 

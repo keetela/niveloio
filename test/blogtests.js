@@ -91,4 +91,27 @@ describe('Niveloio : routes testing', () => {
         });
     });
   });
+  // create a new post
+  describe('POST  /api/v1/posts', () => {
+    it('should create a post', (done) => {
+      chai
+        .request(app)
+        .post('/api/v1/posts')
+        .send({
+          title: 'What does does PR stand for?',
+          content: 'Lorem Ipsum is simply dummy',
+          publish: true,
+          unpublish: false,
+        })
+        .end((err, res) => {
+          expect(res.body).to.be.a('object');
+          expect(res.status).to.equal(200);
+          expect(res.body).to.be.have.property('title');
+          expect(res.body).to.be.have.property('content');
+          expect(res.body).to.be.have.property('publish', true);
+          expect(res.body).to.be.have.property('unpublish', false);
+          done();
+        });
+    });
+  });
 });

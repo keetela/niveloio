@@ -65,4 +65,14 @@ export default class Post {
         next(error);
       });
   }
+
+  static createPost(req, res, next) {
+    queryblog
+      .create(req.body)
+      .then(blogId => queryblog.getOne(blogId)) // after creating a post we check db to see if its created
+      .then(post => res.status(200).json(post)) // then we return it
+      .catch((error) => {
+        next(error);
+      });
+  }
 }

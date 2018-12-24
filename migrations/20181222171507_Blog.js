@@ -1,10 +1,7 @@
 exports.up = function (knex, Promise) {
   return knex.schema.createTable('blog', (table) => {
     table.increments();
-    table
-      .string('title')
-      .notNullable()
-      .unique();
+    table.string('title').notNullable();
     table.string('content').notNullable();
     table.boolean('publish').notNullable();
     table.boolean('unpublish').notNullable();

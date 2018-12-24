@@ -4,7 +4,7 @@ import app from '../server';
 
 const { expect } = chai;
 
-process.env.NODE_ENV = 'test';
+process.env.NODE_ENV = 'development';
 
 chai.use(chaiHttp);
 
@@ -33,7 +33,7 @@ describe('Niveloio : routes testing', () => {
     it('should return a single post', (done) => {
       chai
         .request(app)
-        .get('/api/v1/posts/8')
+        .get('/api/v1/posts/18')
         .end((err, res) => {
           expect(res.body).to.be.a('object');
           expect(res.status).to.equal(200);
@@ -50,7 +50,7 @@ describe('Niveloio : routes testing', () => {
     it('should publish a post', (done) => {
       chai
         .request(app)
-        .put(`/api/v1/posts/${7}/publish`)
+        .put(`/api/v1/posts/${17}/publish`)
         .send({
           title: 'what is nodejs best use case?',
           content: 'Lorem Ipsum is simply dummy',
@@ -73,7 +73,7 @@ describe('Niveloio : routes testing', () => {
     it('should publish a post', (done) => {
       chai
         .request(app)
-        .put(`/api/v1/posts/${7}/unpublish`)
+        .put(`/api/v1/posts/${17}/unpublish`)
         .send({
           title: 'what is nodejs best use case?',
           content: 'Lorem Ipsum is simply dummy',
@@ -98,18 +98,14 @@ describe('Niveloio : routes testing', () => {
         .request(app)
         .post('/api/v1/posts')
         .send({
-          title: 'What does does PR stand for?',
+          title: 'What does is PR and github naming convention?',
           content: 'Lorem Ipsum is simply dummy',
           publish: true,
           unpublish: false,
         })
         .end((err, res) => {
-          expect(res.body).to.be.a('object');
           expect(res.status).to.equal(200);
-          expect(res.body).to.be.have.property('title');
-          expect(res.body).to.be.have.property('content');
-          expect(res.body).to.be.have.property('publish', true);
-          expect(res.body).to.be.have.property('unpublish', false);
+          expect(res.body).to.be.have.property('message', 'the same question has been asked');
           done();
         });
     });

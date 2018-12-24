@@ -72,6 +72,11 @@ export default class Post {
       .then(blogId => queryblog.getOne(blogId)) // after creating a post we check db to see if its created
       .then(post => res.status(200).json(post)) // then we return it
       .catch((error) => {
+        if (error.routine === '_bt_check_unique') {
+          return res.json({
+            message: 'the same question has been asked',
+          });
+        }
         next(error);
       });
   }

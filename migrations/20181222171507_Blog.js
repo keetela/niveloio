@@ -1,16 +1,16 @@
-exports.up = function(knex, Promise) {
-  return knex.schema.createTable("blog", function(table) {
+exports.up = function (knex, Promise) {
+  return knex.schema.createTable('blog', (table) => {
     table.increments();
     table
-      .string("title")
+      .string('title')
       .notNullable()
       .unique();
-    table.string("content").notNullable();
-    table.boolean("publish").notNullable();
-    table.boolean("unpublish").notNullable();
+    table.string('content').notNullable();
+    table.boolean('publish').notNullable();
+    table.boolean('unpublish').notNullable();
   });
 };
 
-exports.down = function(knex, Promise) {
-  return knex.schema.dropTable("blog");
+exports.down = function (knex, Promise) {
+  return knex.schema.dropTable('blog');
 };

@@ -80,4 +80,19 @@ export default class Post {
         next(error);
       });
   }
+
+  static deleteBlogPost(req, res, next) {
+    queryblog
+      .getOne(req.params.id)
+      .then((post) => {
+        queryblog.deletePost(req.params.id).then(() => res.status(200).json({
+          message: 'Post deleted',
+          post,
+        }));
+      })
+      .catch((error) => {
+        res.json(error);
+        next(error);
+      });
+  }
 }

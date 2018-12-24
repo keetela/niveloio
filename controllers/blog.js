@@ -70,7 +70,7 @@ export default class Post {
   static createPost(req, res, next) {
     queryblog
       .create(req.body)
-      .then(blogId => queryblog.getOne(blogId)) // after creating a post we check db to see if its created
+      .then(blogId => queryblog.getOne(blogId)) // check db to see if its created
       .then(post => res.status(200).json(post)) // then we return it
       .catch((error) => {
         if (error.routine === '_bt_check_unique') {
@@ -78,7 +78,7 @@ export default class Post {
             message: 'the same question has been asked',
           });
         }
-        next(error);
+        return next(error);
       });
   }
 

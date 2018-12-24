@@ -1,5 +1,7 @@
 # Niveloio
 
+[![Build Status](https://travis-ci.com/niveloio/niveloio.svg?branch=develop)](https://travis-ci.com/niveloio/niveloio)
+
 ![](./logo.jpg)
 
 # Sendit API Standards

@@ -1,5 +1,7 @@
 # Niveloio
 
+![](./logo.jpg)
+
 # Sendit API Standards
 
 - [Setup Instructions](#instructions)

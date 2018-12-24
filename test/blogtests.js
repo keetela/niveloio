@@ -1,3 +1,4 @@
+/* eslint linebreak-style: ["error", "windows"] */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';

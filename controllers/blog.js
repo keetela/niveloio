@@ -1,3 +1,4 @@
+/* eslint linebreak-style: ["error", "windows"] */
 import queryblog from '../database/blogquery';
 
 export default class Post {
@@ -85,10 +86,15 @@ export default class Post {
     queryblog
       .getOne(req.params.id)
       .then((post) => {
-        queryblog.deletePost(req.params.id).then(() => res.status(200).json({
-          message: 'Post deleted',
-          post,
-        }));
+        queryblog
+          .deletePost(req.params.id)
+          .then(() => res.status(200).json({
+            message: 'Post deleted',
+            post,
+          }))
+          .catch((error) => {
+            res.json(error);
+          });
       })
       .catch((error) => {
         res.json(error);

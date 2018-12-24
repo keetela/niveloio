@@ -1,3 +1,4 @@
+/* eslint linebreak-style: ["error", "windows"] */
 const dotenv = require('dotenv');
 // Update with your config settings.
 dotenv.config();

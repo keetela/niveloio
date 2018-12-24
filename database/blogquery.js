@@ -1,5 +1,5 @@
+/* eslint linebreak-style: ["error", "windows"] */
 import knex from './knex';
-import Post from '../controllers/blog';
 
 // this is to get blog column from the db
 function Posts() {

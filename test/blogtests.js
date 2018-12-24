@@ -1,3 +1,4 @@
+/* eslint linebreak-style: ["error", "windows"] */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';
@@ -93,7 +94,7 @@ describe('Niveloio : routes testing', () => {
   });
   // create a new post
   describe('POST  /api/v1/posts', () => {
-    it('should create a post', (done) => {
+    it('should not create a post', (done) => {
       chai
         .request(app)
         .post('/api/v1/posts')
@@ -106,6 +107,38 @@ describe('Niveloio : routes testing', () => {
         .end((err, res) => {
           expect(res.status).to.equal(200);
           expect(res.body).to.be.have.property('message', 'the same question has been asked');
+          done();
+        });
+    });
+  });
+  // delete a new post
+  describe('DELETE  /api/v1/posts', () => {
+    it('should delete a post', (done) => {
+      chai
+        .request(app)
+        .delete('/api/v1/posts/20')
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body).to.be.have.property('message', 'Post deleted');
+          done();
+        });
+    });
+  });
+
+  describe('post  /api/v1/posts', () => {
+    it('should create a post', (done) => {
+      chai
+        .request(app)
+        .post('/api/v1/posts')
+        .send({
+          id: 20,
+          title: 'What does is PR and github naming convention?',
+          content: 'Lorem Ipsum is simply dummy',
+          publish: true,
+          unpublish: false,
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
           done();
         });
     });

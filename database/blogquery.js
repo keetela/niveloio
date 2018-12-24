@@ -1,5 +1,5 @@
+/* eslint linebreak-style: ["error", "windows"] */
 import knex from './knex';
-import Post from '../controllers/blog';
 
 // this is to get blog column from the db
 function Posts() {
@@ -21,9 +21,14 @@ const publish = (blogID, updates) => Posts()
 // create a new blog post
 const create = blog => Posts().insert(blog, 'id');
 
+const deletePost = blogID => Posts()
+  .where('id', parseInt(blogID))
+  .del();
+
 module.exports = {
   getAll,
   getOne,
   publish,
   create,
+  deletePost,
 };

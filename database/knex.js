@@ -1,4 +1,5 @@
+/* eslint linebreak-style: ["error", "windows"] */
 import config from '../knexfile';
 
-config.development;
-module.exports = require('knex')(config.development);
+const configuration = config.development;
+module.exports = require('knex')(configuration);

@@ -47,4 +47,22 @@ export default class Post {
         next(error);
       });
   }
+
+  // publish a new post by setting publish property to true
+  static unpublishPost(req, res, next) {
+    const updatedPost = {
+      id: req.params.id,
+      title: req.body.title,
+      content: req.body.content,
+      publish: false,
+      unpublish: true,
+    };
+    queryblog
+      .publish(req.params.id, updatedPost)
+      .then(() => queryblog.getOne(req.params.id))
+      .then(post => res.status(200).json(post))
+      .catch((error) => {
+        next(error);
+      });
+  }
 }

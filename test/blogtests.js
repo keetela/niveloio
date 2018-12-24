@@ -28,6 +28,7 @@ describe('Niveloio : routes testing', () => {
         });
     });
   });
+  // get a single post
   describe('Get  /api/v1/posts/:id', () => {
     it('should return a single post', (done) => {
       chai
@@ -40,6 +41,52 @@ describe('Niveloio : routes testing', () => {
           expect(res.body.post).to.be.have.property('content');
           expect(res.body.post).to.be.have.property('publish');
           expect(res.body.post).to.be.have.property('unpublish');
+          done();
+        });
+    });
+  });
+  // publish a post
+  describe('PUT  /api/v1/posts/:id/publish', () => {
+    it('should publish a post', (done) => {
+      chai
+        .request(app)
+        .put(`/api/v1/posts/${7}/publish`)
+        .send({
+          title: 'what is nodejs best use case?',
+          content: 'Lorem Ipsum is simply dummy',
+          publish: true,
+          unpublish: false,
+        })
+        .end((err, res) => {
+          expect(res.body).to.be.a('object');
+          expect(res.status).to.equal(200);
+          expect(res.body).to.be.have.property('title');
+          expect(res.body).to.be.have.property('content');
+          expect(res.body).to.be.have.property('publish', true);
+          expect(res.body).to.be.have.property('unpublish', false);
+          done();
+        });
+    });
+  });
+  // unpublish a post
+  describe('PUT  /api/v1/posts/:id/unpublish', () => {
+    it('should publish a post', (done) => {
+      chai
+        .request(app)
+        .put(`/api/v1/posts/${7}/unpublish`)
+        .send({
+          title: 'what is nodejs best use case?',
+          content: 'Lorem Ipsum is simply dummy',
+          publish: false,
+          unpublish: true,
+        })
+        .end((err, res) => {
+          expect(res.body).to.be.a('object');
+          expect(res.status).to.equal(200);
+          expect(res.body).to.be.have.property('title');
+          expect(res.body).to.be.have.property('content');
+          expect(res.body).to.be.have.property('publish', false);
+          expect(res.body).to.be.have.property('unpublish', true);
           done();
         });
     });

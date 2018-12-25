@@ -9,7 +9,7 @@ process.env.NODE_ENV = 'development';
 
 chai.use(chaiHttp);
 
-describe('Niveloio : routes testing', () => {
+describe('Nivelo io api testing.....', () => {
   beforeEach((done) => {
     done();
   });
@@ -26,6 +26,20 @@ describe('Niveloio : routes testing', () => {
           expect(res.statusCode).to.be.equal(200);
           expect(res.body).to.be.a('object');
           expect(res.body).to.be.have.property('message', 'Welcome to nivelo api');
+
+          done();
+        });
+    });
+  });
+  describe('Get /nullroute', () => {
+    it('should return error', (done) => {
+      chai
+        .request(app)
+        .get('/nullroute')
+        .end((err, res) => {
+          expect(res.statusCode).to.be.equal(404);
+          expect(res.body).to.be.a('object');
+          expect(res.body).to.be.have.property('message', 'Not Found');
 
           done();
         });
@@ -85,7 +99,7 @@ describe('Niveloio : routes testing', () => {
   });
   // unpublish a post
   describe('PUT  /api/v1/posts/:id/unpublish', () => {
-    it('should publish a post', (done) => {
+    it('should unpublish a post', (done) => {
       chai
         .request(app)
         .put(`/api/v1/posts/${17}/unpublish`)

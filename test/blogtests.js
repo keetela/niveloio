@@ -45,6 +45,20 @@ describe('Nivelo io api testing.....', () => {
         });
     });
   });
+  describe('Get /0', () => {
+    it('should return error', (done) => {
+      chai
+        .request(app)
+        .get('/0')
+        .end((err, res) => {
+          expect(res.statusCode).to.be.equal(404);
+          expect(res.body).to.be.a('object');
+          expect(res.body).to.be.have.property('message', 'Not Found');
+
+          done();
+        });
+    });
+  });
   describe('Get /api/v1/posts', () => {
     it('should return an object of all posts', (done) => {
       chai

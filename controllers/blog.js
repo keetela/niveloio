@@ -13,13 +13,17 @@ export default class Post {
   }
 
   // query one post from the database
-  static getOnePost(req, res) {
+  static getOnePost(req, res, next) {
     queryblog
       .getOne(req.params.id)
       .then((post) => {
-        res.status(200).json({
-          post,
-        });
+        if (post) {
+          res.status(200).json({
+            post,
+          });
+        } else {
+          next();
+        }
       })
       .catch((err) => {
         res.json({

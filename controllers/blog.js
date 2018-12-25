@@ -74,18 +74,10 @@ export default class Post {
     queryblog
       .getOne(req.params.id)
       .then((post) => {
-        queryblog
-          .deletePost(req.params.id)
-          .then(() => res.status(200).json({
-            message: 'Post deleted',
-            post,
-          }))
-          .catch((error) => {
-            res.json({
-              message: 'post not found',
-              error,
-            });
-          });
+        queryblog.deletePost(req.params.id).then(() => res.status(200).json({
+          message: 'Post deleted',
+          post,
+        }));
       })
       .catch((error) => {
         if (error.routine === 'pg_atoi') {

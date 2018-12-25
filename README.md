@@ -1,4 +1,4 @@
-# Niveloio [![Build Status](https://travis-ci.com/niveloio/niveloio.svg?branch=develop)](https://travis-ci.com/niveloio/niveloio)[![Coverage Status](https://coveralls.io/repos/github/niveloio/niveloio/badge.svg?branch=develop)](https://coveralls.io/github/niveloio/niveloio?branch=develop)
+# Niveloio [![Build Status](https://travis-ci.com/niveloio/niveloio.svg?branch=develop)](https://travis-ci.com/niveloio/niveloio) [![Coverage Status](https://coveralls.io/repos/github/niveloio/niveloio/badge.svg?branch=develop)](https://coveralls.io/github/niveloio/niveloio?branch=develop)
 
 ![](./logo.jpg)
 

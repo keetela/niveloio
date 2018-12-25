@@ -3,36 +3,26 @@ import queryblog from '../database/blogquery';
 
 export default class Post {
   // query all posts from the database
-  static getAllPosts(req, res, next) {
-    queryblog
-      .getAll()
-      .then((posts) => {
-        res.status(200).json({
-          message: 'all posts',
-          posts,
-        });
-      })
-      .catch((err) => {
-        next(err);
+  static getAllPosts(req, res) {
+    queryblog.getAll().then((posts) => {
+      res.status(200).json({
+        message: 'all posts',
+        posts,
       });
+    });
   }
 
   // query one post from the database
-  static getOnePost(req, res, next) {
-    queryblog
-      .getOne(req.params.id)
-      .then((post) => {
-        res.status(200).json({
-          post,
-        });
-      })
-      .catch((err) => {
-        next(err);
+  static getOnePost(req, res) {
+    queryblog.getOne(req.params.id).then((post) => {
+      res.status(200).json({
+        post,
       });
+    });
   }
 
   // publish a new post by setting publish property to true
-  static publishPost(req, res, next) {
+  static publishPost(req, res) {
     const updatedPost = {
       id: req.params.id,
       title: req.body.title,
@@ -43,14 +33,11 @@ export default class Post {
     queryblog
       .publish(req.params.id, updatedPost)
       .then(() => queryblog.getOne(req.params.id))
-      .then(post => res.status(200).json(post))
-      .catch((error) => {
-        next(error);
-      });
+      .then(post => res.status(200).json(post));
   }
 
   // publish a new post by setting publish property to true
-  static unpublishPost(req, res, next) {
+  static unpublishPost(req, res) {
     const updatedPost = {
       id: req.params.id,
       title: req.body.title,
@@ -61,13 +48,10 @@ export default class Post {
     queryblog
       .publish(req.params.id, updatedPost)
       .then(() => queryblog.getOne(req.params.id))
-      .then(post => res.status(200).json(post))
-      .catch((error) => {
-        next(error);
-      });
+      .then(post => res.status(200).json(post));
   }
 
-  static createPost(req, res, next) {
+  static createPost(req, res) {
     queryblog
       .create(req.body)
       .then(blogId => queryblog.getOne(blogId)) // check db to see if its created
@@ -86,7 +70,7 @@ export default class Post {
       });
   }
 
-  static deleteBlogPost(req, res, next) {
+  static deleteBlogPost(req, res) {
     queryblog
       .getOne(req.params.id)
       .then((post) => {

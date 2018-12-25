@@ -14,11 +14,19 @@ export default class Post {
 
   // query one post from the database
   static getOnePost(req, res) {
-    queryblog.getOne(req.params.id).then((post) => {
-      res.status(200).json({
-        post,
+    queryblog
+      .getOne(req.params.id)
+      .then((post) => {
+        res.status(200).json({
+          post,
+        });
+      })
+      .catch((err) => {
+        res.json({
+          message: 'invalid id',
+          err,
+        });
       });
-    });
   }
 
   // publish a new post by setting publish property to true

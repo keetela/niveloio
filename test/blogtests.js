@@ -74,6 +74,20 @@ describe('Nivelo io api testing.....', () => {
         });
     });
   });
+  // get a invalid post
+  describe('Get  /api/v1/posts/:id', () => {
+    it('should not return a post', (done) => {
+      chai
+        .request(app)
+        .get('/api/v1/posts/p')
+        .end((err, res) => {
+          expect(res.body).to.be.a('object');
+          expect(res.body).to.be.have.property('message', 'invalid id');
+
+          done();
+        });
+    });
+  });
   // publish a post
   describe('PUT  /api/v1/posts/:id/publish', () => {
     it('should publish a post', (done) => {

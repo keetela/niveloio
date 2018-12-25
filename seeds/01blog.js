@@ -1,4 +1,5 @@
 /* eslint linebreak-style: ["error", "windows"] */
+
 exports.seed = (knex, Promise) => knex('blog')
   .del() // Deletes ALL existing entries
   .then(() => knex('blog').insert({

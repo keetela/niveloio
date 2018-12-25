@@ -23,7 +23,7 @@ router.post('/api/v1/posts', Post.createPost);
 router.put('/api/v1/posts/:id/publish', Post.publishPost);
 
 //* ** UnPublish a post *** //
-router.put('/api/v1/posts/:id/unpublish', Post.unpublishPost);
+router.put('/api/v1/posts/:id/unpublish', Post.publishPost);
 
 //* ** delete a post *** //
 router.delete('/api/v1/posts/:id', Post.deleteBlogPost);

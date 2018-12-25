@@ -7,12 +7,6 @@ module.exports = {
   test: {
     client: 'pg',
     connection: `${process.env.TESTDB_URL}`,
-    migrations: {
-      directory: `${__dirname}/migrations`,
-    },
-    seeds: {
-      directory: `${__dirname}/seeds/test`,
-    },
   },
   development: {
     client: 'pg',

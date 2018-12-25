@@ -62,7 +62,7 @@ describe('Nivelo io api testing.....', () => {
     it('should return a single post', (done) => {
       chai
         .request(app)
-        .get('/api/v1/posts/18')
+        .get('/api/v1/posts/181')
         .end((err, res) => {
           expect(res.body).to.be.a('object');
           expect(res.status).to.equal(200);
@@ -79,7 +79,7 @@ describe('Nivelo io api testing.....', () => {
     it('should publish a post', (done) => {
       chai
         .request(app)
-        .put(`/api/v1/posts/${17}/publish`)
+        .put(`/api/v1/posts/${181}/publish`)
         .send({
           title: 'what is nodejs best use case?',
           content: 'Lorem Ipsum is simply dummy',
@@ -102,7 +102,7 @@ describe('Nivelo io api testing.....', () => {
     it('should unpublish a post', (done) => {
       chai
         .request(app)
-        .put(`/api/v1/posts/${17}/unpublish`)
+        .put(`/api/v1/posts/${181}/unpublish`)
         .send({
           title: 'what is nodejs best use case?',
           content: 'Lorem Ipsum is simply dummy',
@@ -127,7 +127,7 @@ describe('Nivelo io api testing.....', () => {
         .request(app)
         .post('/api/v1/posts')
         .send({
-          title: 'What does is PR and github naming convention?',
+          title: 'what is es6?',
           content: 'Lorem Ipsum is simply dummy',
           publish: true,
           unpublish: false,
@@ -144,7 +144,7 @@ describe('Nivelo io api testing.....', () => {
     it('should delete a post', (done) => {
       chai
         .request(app)
-        .delete('/api/v1/posts/20')
+        .delete('/api/v1/posts/18')
         .end((err, res) => {
           expect(res.status).to.equal(200);
           expect(res.body).to.be.have.property('message', 'Post deleted');
@@ -172,7 +172,7 @@ describe('Nivelo io api testing.....', () => {
         .request(app)
         .post('/api/v1/posts')
         .send({
-          id: 20,
+          id: 180,
           title: 'What does is PR and github naming convention?',
           content: 'Lorem Ipsum is simply dummy',
           publish: true,

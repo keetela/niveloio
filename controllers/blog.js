@@ -78,7 +78,11 @@ export default class Post {
             message: 'the same question has been asked',
           });
         }
-        return next(error);
+        if (error.routine === 'ExecConstraints') {
+          return res.status(402).json({
+            message: 'blog post cannot be empty',
+          });
+        }
       });
   }
 
@@ -93,12 +97,18 @@ export default class Post {
             post,
           }))
           .catch((error) => {
-            res.json(error);
+            res.json({
+              message: 'post not found',
+              error,
+            });
           });
       })
       .catch((error) => {
-        res.json(error);
-        next(error);
+        if (error.routine === 'pg_atoi') {
+          res.status(402).json({
+            message: 'invalid id type',
+          });
+        }
       });
   }
 }

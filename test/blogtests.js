@@ -17,6 +17,20 @@ describe('Niveloio : routes testing', () => {
   afterEach((done) => {
     done();
   });
+  describe('Get /', () => {
+    it('should return a welcome message', (done) => {
+      chai
+        .request(app)
+        .get('/')
+        .end((err, res) => {
+          expect(res.statusCode).to.be.equal(200);
+          expect(res.body).to.be.a('object');
+          expect(res.body).to.be.have.property('message', 'Welcome to nivelo api');
+
+          done();
+        });
+    });
+  });
   describe('Get /api/v1/posts', () => {
     it('should return an object of all posts', (done) => {
       chai

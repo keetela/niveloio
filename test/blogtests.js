@@ -124,6 +124,19 @@ describe('Niveloio : routes testing', () => {
         });
     });
   });
+  // delete a  post with invalid id
+  describe('DELETE  /api/v1/posts', () => {
+    it('should fail to delete a post', (done) => {
+      chai
+        .request(app)
+        .delete('/api/v1/posts/n')
+        .end((err, res) => {
+          expect(res.status).to.equal(402);
+          expect(res.body).to.be.have.property('message', 'invalid id type');
+          done();
+        });
+    });
+  });
 
   describe('post  /api/v1/posts', () => {
     it('should create a post', (done) => {
@@ -139,6 +152,19 @@ describe('Niveloio : routes testing', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          done();
+        });
+    });
+  });
+  describe('post  /api/v1/posts', () => {
+    it('should not create a post', (done) => {
+      chai
+        .request(app)
+        .post('/api/v1/posts')
+        .send({})
+        .end((err, res) => {
+          expect(res.status).to.equal(402);
+          expect(res.body).to.be.have.property('message', 'blog post cannot be empty');
           done();
         });
     });

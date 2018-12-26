@@ -2,12 +2,14 @@
 import express from 'express';
 import Post from '../controllers/blog';
 import User from '../controllers/user';
+import moment from 'moment'; 
 
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
+  
   res.status(200).json({
-    message: 'Welcome to nivelo api',
+    message: 'Welcome to nivelo api'
   });
 });
 

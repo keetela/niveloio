@@ -1,8 +1,7 @@
 /* eslint linebreak-style: ["error", "windows"] */
 import express from 'express';
 import Post from '../controllers/blog';
-import User from '../controllers/user';
-import moment from 'moment'; 
+import User from '../controllers/user'; 
 
 const router = express.Router();
 
@@ -36,5 +35,6 @@ router.get('/api/v1/users', User.getAllUsers);
 
 //* ** Sign up new user*** //
 router.post('/api/v1/users', User.createUser);
+
 
 export default router;

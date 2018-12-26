@@ -1,4 +1,4 @@
-/* eslint linebreak-style: ["error", "windows"] */
+cls/* eslint linebreak-style: ["error", "windows"] */
 import queryuser from '../database/usersquery';
 
 // Joi, validation helper
@@ -10,10 +10,12 @@ const time = moment().format();
 
 
 // manage auth
-// import jwt from 'jsonwebtoken';
-// import Auth from '../middleware/isAuth';
+import jwt from 'jsonwebtoken';
+import Auth from '../helpers/verifyAuth';
 
 
+const saltRounds = 10;
+import bcrypt from 'bcrypt';
 
 export default class User {
   // query all users from the database
@@ -31,6 +33,9 @@ export default class User {
   // sign up new user
   static createUser(req, res) { 
   const {error} = validateUser(req.body);
+  const password = req.body.password;
+  const hash = bcrypt.hashSync(password, saltRounds);
+
   if(error){
       res.status(400).send({
         message:error.details[0].message

@@ -1,6 +1,7 @@
 /* eslint linebreak-style: ["error", "windows"] */
 import express from 'express';
 import Post from '../controllers/blog';
+import User from '../controllers/user';
 
 const router = express.Router();
 
@@ -27,4 +28,11 @@ router.put('/api/v1/posts/:id/unpublish', Post.publishPost);
 
 //* ** delete a post *** //
 router.delete('/api/v1/posts/:id', Post.deleteBlogPost);
+
+//* ** GET all users *** //
+router.get('/api/v1/users', User.getAllUsers);
+
+//* ** Sign up new user*** //
+router.post('/api/v1/users', User.createUser);
+
 export default router;

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "nyc --require babel-core/register mocha test/*.js --timeout 15000 --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "start": "npm test && nodemon --exec babel-node server.js"
+    "start": "npm test && nodemon --exec babel-node server.js",
+    "dev": "nodemon --exec babel-node server.js"
   },
   "repository": {
     "type": "git",

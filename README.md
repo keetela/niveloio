@@ -49,7 +49,7 @@ $ npm run test
 ### GET /posts
 
 Example: https://niveloio.herokuapp.com/api/v1/posts
-
+```
 Response body:
 
     "message": "all posts",
@@ -85,12 +85,13 @@ Response body:
     ]
 
 }
+```
 
 ### GET /postId
 
 Response body:
 Example: https://niveloio.herokuapp.com/api/v1/posts/5
-
+```
     {
 
       "post": {
@@ -101,3 +102,32 @@ Example: https://niveloio.herokuapp.com/api/v1/posts/5
       "unpublish": false
       }
     }
+```
+
+## Register a new user
+
+### Note: Remember to update npm 
+
+```
+npm update
+```
+
+### RESTful URLs
+
+| Method | Endpoint                        | Description        |
+| ------ | ------------------------------- | ------------------ |
+| GET    | /api/v1/users                   | List all users     |
+| POST   | /api/v1/users                   | Register a new user  |
+
+### POST: Registering new user
+
+```
+{
+	"names": "John Doe",
+  "username": "johndoe",
+  "email": "john@doe.com",
+  "password": "secret"
+}
+```
+
+Example: https://niveloio.herokuapp.com/api/v1/users

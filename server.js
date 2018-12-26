@@ -22,7 +22,7 @@ app.use((err, req, res, next) => {
   res.status(err.status);
   res.json({
     message: err.message,
-    error: err,
+    error: err.status,
   });
 });
 

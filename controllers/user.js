@@ -53,7 +53,7 @@ export default class User {
     queryuser
       .create(user)
       .then(user => res.status(200).json({
-        message: "User registered succeffully"
+        message: "User registered successfully"
       })
       )
       .catch((error) => {
@@ -75,7 +75,6 @@ export default class User {
       });
     } 
   }
-
 // validating user
 function validateUser(user){
   const schema = {

@@ -1,4 +1,4 @@
-cls/* eslint linebreak-style: ["error", "windows"] */
+/* eslint linebreak-style: ["error", "windows"] */
 import queryuser from '../database/usersquery';
 
 // Joi, validation helper
@@ -10,12 +10,12 @@ const time = moment().format();
 
 
 // manage auth
-import jwt from 'jsonwebtoken';
-import Auth from '../helpers/verifyAuth';
+// import jwt from 'jsonwebtoken';
+// import Auth from '../helpers/verifyAuth';
 
-
-const saltRounds = 10;
-import bcrypt from 'bcrypt';
+// encrypting password
+import bcrypt from 'bcryptjs';
+var salt = bcrypt.genSaltSync(10);
 
 export default class User {
   // query all users from the database
@@ -32,39 +32,49 @@ export default class User {
 
   // sign up new user
   static createUser(req, res) { 
-  const {error} = validateUser(req.body);
-  const password = req.body.password;
-  const hash = bcrypt.hashSync(password, saltRounds);
-
-  if(error){
-      res.status(400).send({
-        message:error.details[0].message
-      });
-      return;
-  }
+    // validate user
+    const {error} = validateUser(req.body);
+    if(error){
+        res.status(400).send({
+          message:error.details[0].message
+        });
+        return;
+    }
+    // hash password
+    var password = bcrypt.hashSync(req.body.password, salt);
+    // user info
+    const user = {
+      names: req.body.names,
+      email: req.body.email,
+      username: req.body.username,
+      password:password
+    };
+    // start insert query
     queryuser
-    .create(req.body)
-    .then(user => res.status(200).json(post[0])
-    )
-    .catch((error) => {
-      if (error.routine === '_bt_check_unique') {
-         return res.status(422).json({
-            message: 'Sorry, user already exists!'
-         });
-      }
-      if (error.routine === 'ExecConstraints') {
-          return res.status(402).json({
-           message: 'user post cannot be empty'
-        });
-      }
-      if(error){
-        res.json({
-          message:error
-        });
-      }
-    });
-  } 
-}
+      .create(user)
+      .then(user => res.status(200).json({
+        message: "User registered succeffully"
+      })
+      )
+      .catch((error) => {
+        if (error.routine === '_bt_check_unique') {
+          return res.status(422).json({
+              message: 'Sorry, user already exists!'
+          });
+        }
+        if (error.routine === 'ExecConstraints') {
+            return res.status(402).json({
+            message: 'user post cannot be empty'
+          });
+        }
+        if(error){
+          res.json({
+            message:error
+          });
+        }
+      });
+    } 
+  }
 
 // validating user
 function validateUser(user){

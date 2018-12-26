@@ -11,14 +11,21 @@ app.use(routers);
 
 const PORT = process.env.PORT || 3000;
 
-// error handler
+// error 404
 app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-app.use((err, req, res, next) => {
+// Internal server error
+app.use((err, req, res) => {
+  res.status(500).send({
+    message: "Error 500. Page not found"
+  });
+});
+// other request errors
+app.use((err, req, res) => {
   res.status(err.status);
   res.json({
     message: err.message,

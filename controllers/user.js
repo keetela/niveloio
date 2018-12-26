@@ -75,7 +75,6 @@ export default class User {
       });
     } 
   }
-
 // validating user
 function validateUser(user){
   const schema = {

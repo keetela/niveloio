@@ -2,7 +2,7 @@
 
 ![](./logo.jpg)
 
-# Sendit API Standards
+# Niveloio API Standards
 
 - [Setup Instructions](#instructions)
 - [RESTful URLs](#restful-urls)

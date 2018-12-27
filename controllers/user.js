@@ -74,6 +74,27 @@ export default class User {
         }
       });
     } 
+    // user sign in
+  //   static login(req, res) { 
+  //     queryuser
+  //     .login(req.params.email)
+  //     .then((user) => {
+  //       if (user) {
+  //         res.status(200).json({
+  //           user:user
+  //         });
+  //       } else {
+  //         next();
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       res.json({
+  //         message: 'invalid email',
+  //         err,
+  //       })
+  //     });
+    
+  //   }
   }
 // validating user
 function validateUser(user){

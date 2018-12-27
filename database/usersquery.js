@@ -12,6 +12,12 @@ const getAll = () => Users().select();
 // sign up new user
 const create = user => Users().insert(user, 'id');
 
+// sign in
+// const create = user => Users().select(user, 'id');
+// const login = email => Users()
+//   .where('email', email)
+//   .first();
+
 module.exports = {
    create,
    getAll

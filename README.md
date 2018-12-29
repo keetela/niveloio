@@ -1,4 +1,4 @@
-# Niveloio [![Build Status](https://travis-ci.com/niveloio/niveloio.svg?branch=develop)](https://travis-ci.com/niveloio/niveloio) [![Coverage Status](https://coveralls.io/repos/github/niveloio/niveloio/badge.svg?branch=develop&kill-cache=1)](https://coveralls.io/github/niveloio/niveloio?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/57a880b0b1fbcf7dc89e/maintainability)](https://codeclimate.com/github/niveloio/niveloio/maintainability)
+# Niveloio [![Build Status](https://travis-ci.com/niveloio/niveloio.svg?branch=develop)](https://travis-ci.com/niveloio/niveloio) [![Coverage Status](https://coveralls.io/repos/github/niveloio/niveloio/badge.svg?branch=develop&kill-cache=1)](https://coveralls.io/github/niveloio/niveloio?branch=develop&service=githu) [![Maintainability](https://api.codeclimate.com/v1/badges/57a880b0b1fbcf7dc89e/maintainability)](https://codeclimate.com/github/niveloio/niveloio/maintainability) [![dependencies Status](https://david-dm.org/expressjs/express/status.svg)](https://david-dm.org/expressjs/express)
 
 ![](./logo.jpg)
 
@@ -106,6 +106,8 @@ Example: https://niveloio.herokuapp.com/api/v1/posts/5
 
 ## Register a new user
 
+Remember to add `SECRET="YOUR_SECRET_KEY"` in your .env file
+
 ### Note: Remember to update npm 
 
 ```
@@ -117,17 +119,34 @@ npm update
 | Method | Endpoint                        | Description        |
 | ------ | ------------------------------- | ------------------ |
 | GET    | /api/v1/users                   | List all users     |
-| POST   | /api/v1/users                   | Register a new user  |
+| POST   | /api/v1/register                | Register a new user  |
+| POST   | /api/v1/login                   | Log in a user |
+
+### Test Autheticated Routes
+
+
+
+| Method | Endpoint                        | Description        |
+| ------ | ------------------------------- | ------------------ |
+| GET   | /api/v1/protected                   | Testing protected route |
 
 ### POST: Registering new user
 
 ```
 {
-	"names": "John Doe",
+  "names": "John Doe",
   "username": "johndoe",
   "email": "john@doe.com",
   "password": "secret"
 }
 ```
 
-Example: https://niveloio.herokuapp.com/api/v1/users
+### POST: Loggin in
+
+```
+{
+  "email": "john@doe.com",
+  "password": "secret"
+}
+```
+

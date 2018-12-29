@@ -12,7 +12,19 @@ const getAll = () => Users().select();
 // sign up new user
 const create = user => Users().insert(user, 'id');
 
+// sign in
+// const create = user => Users().select(user, 'id');
+const login = (user) => Users()
+  .column('names', 'email', 'username', 'password', 'role', 'contributor', 'created_time')
+  .select()
+  .where({
+    'email': user.email,
+    'active': true
+  })
+  .first();
+
 module.exports = {
    create,
+   login,
    getAll
 };

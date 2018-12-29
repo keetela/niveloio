@@ -5,6 +5,9 @@ import User from '../controllers/user';
 
 const router = express.Router();
 
+// check auth
+import verifyAuth from '../middleware/verifyAuth';
+
 router.get('/', (req, res, next) => {
   
   res.status(200).json({
@@ -37,7 +40,14 @@ router.get('/api/v1/users', User.getAllUsers);
 router.post('/api/v1/signup', User.createUser);
 
 //* ** Login *** //
-// router.post('/api/v1/login', User.login);
+router.post('/api/v1/login', User.login);
+
+//* ** Protected Route ** *//
+router.get('/api/v1/protected', verifyAuth, (req, res) => {  
+  res.send({
+    message: "protected"
+  })
+})
 
 
 export default router;

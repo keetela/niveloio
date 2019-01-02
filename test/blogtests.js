@@ -24,9 +24,6 @@ describe('Niveloio : routes testing', () => {
         .get('/')
         .end((err, res) => {
           expect(res.statusCode).to.be.equal(200);
-          expect(res.body).to.be.a('object');
-          expect(res.body).to.be.have.property('message', 'Welcome to nivelo api');
-
           done();
         });
     });

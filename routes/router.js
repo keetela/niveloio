@@ -9,10 +9,7 @@ const router = express.Router();
 import verifyAuth from '../middleware/verifyAuth';
 
 router.get('/', (req, res, next) => {
-  
-  res.status(200).json({
-    message: 'Welcome to nivelo api'
-  });
+  res.render('index');
 });
 
 //* ** GET all posts *** //

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Welcome to Nivelo</title>
+   <link rel="icon" href="public/images/icon.png">
+   <!-- Compiled and minified CSS -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+   <!-- Compiled and minified JavaScript -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+   <link rel="stylesheet" href="public/css/layout.css">
+</head>
+<body>
+   <div class="valign-wrapper wrapper">
+      <div class="row center-align">
+         <img src="public/images/logo.png" alt="Nivelo">
+         <h5>Welcome to Nivelo Lab</h5>
+         <div>Enhance your capacity.</div>
+      </div>
+   </div>
+</body>
+</html>
+
+<script>
+  $(document).ready(function(){
+     var h = $(this).height();
+     $(".wrapper").css("height",h+"px");
+     $(window).resize(function(){
+        var h = $(this).height();
+      $(".wrapper").css("height",h+"px");
+     })
+  })
+</script>

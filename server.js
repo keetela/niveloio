@@ -11,6 +11,16 @@ app.use(routers);
 
 const PORT = process.env.PORT || 3000;
 
+import  exphbs from 'express-handlebars';
+import path from 'path';
+
+// View engine setup
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
+
+// Static folder
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
 // error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');

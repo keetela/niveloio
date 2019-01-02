@@ -1,7 +1,8 @@
 /* eslint linebreak-style: ["error", "windows"] */
 import express from 'express';
 import Post from '../controllers/blog';
-import User from '../controllers/user'; 
+import User from '../controllers/user';
+import Mailer from '../controllers/mailer'; 
 
 const router = express.Router();
 
@@ -38,6 +39,9 @@ router.post('/api/v1/signup', User.createUser);
 
 //* ** Login *** //
 router.post('/api/v1/login', User.login);
+
+//* ** send email *** //
+router.post('/api/v1/mailer', Mailer.test);
 
 //* ** Protected Route ** *//
 router.get('/api/v1/protected', verifyAuth, (req, res) => {  

@@ -21,15 +21,15 @@
   "homepage": "https://github.com/niveloio/niveloio#readme",
   "devDependencies": {
     "babel-preset-env": "^1.7.0",
-    "eslint": "^5.8.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "nodemon": "^1.18.9",
+    "babel-register": "^6.26.0",
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
     "coveralls": "^3.0.2",
+    "eslint": "^5.11.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
     "mocha": "^5.2.0",
-    "babel-register": "^6.26.0",
+    "nodemon": "^1.18.9",
     "nyc": "^13.1.0"
   },
   "dependencies": {
@@ -45,6 +45,7 @@
     "moment": "^2.23.0",
     "morgan": "^1.9.1",
     "node-bcrypt": "0.0.1",
+    "nodemailer": "^4.1.0",
     "node-pre-gyp": "^0.12.0",
     "pg": "^7.7.1"
   }

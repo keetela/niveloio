@@ -32,7 +32,6 @@ export default class User {
     const {error} = validateUser(req.body);
     if(error){
         res.status(400).send({
-          status:400,
           message:error.details[0].message
         });
         return;
@@ -42,13 +41,12 @@ export default class User {
       // get input info
       const user = {
         email: req.body.email,
+        username: req.body.username,
         names: req.body.names,
         password: hashed
       }
-      
       if(err){
         return res.status(500).send({
-          status:500,
           error:err
         });
       } else {
@@ -62,13 +60,11 @@ export default class User {
         .catch((error) => {
           if (error.routine === '_bt_check_unique') {
             return res.status(422).json({
-                status:422,
                 message: 'Sorry, user already exists!'
             });
           }
           if (error.routine === 'ExecConstraints') {
               return res.status(402).json({
-              status:402,
               message: 'user post cannot be empty'
             });
           }
@@ -92,7 +88,6 @@ export default class User {
     const {error} = validateLogin(credential);
     if(error){
       res.status(400).send({
-        status:400,
         message:error.details[0].message
       });
       return;
@@ -101,7 +96,6 @@ export default class User {
     queryuser.login(credential).then((user) => {
       //  if user exist
       if(user){
-        console.log(user.password);
           bcrypt.compare(credential.password, user.password, (err, result) => {
           if (err) {
             return res.status(401).send({
@@ -111,20 +105,17 @@ export default class User {
           if (result) {
             const token = jwt.sign({id: user.id, role: user.role, contributor: user.contributor}, process.env.SECRET, {expiresIn: "24h"});
             return res.status(200).send({
-              status:200,
               message: "Auth successful",
               token: token
             });
           }
           res.status(401).send({
-            status:401,
             message: "Auth failed"
           });
         });
       }else{
         // user not exist
         res.status(409).send({
-          status:409,
           message: "Account not found."
         })
       }
@@ -140,8 +131,11 @@ export default class User {
 function validateUser(user){
   const schema = {
       names: Joi.string().min(5).max(60).required(),
+      username: Joi.string().min(6).max(30).required(),
       email: Joi.string().email().min(10).max(300),
-      password: Joi.string().required()   
+      password: Joi.string(),
+      created_time: Joi.date()
+      
   };
   return Joi.validate(user, schema);
 }

@@ -4,12 +4,15 @@ import Post from '../controllers/blog';
 import User from '../controllers/user';
 import Mailer from '../controllers/mailer'; 
 
+import passport  from 'passport';
+
 const router = express.Router();
 
 // check auth
 import verifyAuth from '../middleware/verifyAuth';
 
-router.get('/', (req, res, next) => {
+
+router.get('/',  (req, res, next) => {
   res.render('index');
 });
 
@@ -49,6 +52,25 @@ router.get('/api/v1/protected', verifyAuth, (req, res) => {
     message: "protected"
   })
 })
+
+//Passport
+router.get('/auth/login', (req, res) =>{
+  res.render('login');
+});
+// google
+router.get('/auth/google', passport.authenticate('google',{
+  scope: ['profile']
+}));
+
+//callback route for google to redirect to 
+router.get('/auth/google/redirect', passport.authenticate('google'), (req, res) => {
+ res.send(`This is kanaan`);
+});
+// logout
+router.get('/auth/logout', (req, res) =>{
+  req.logout();
+  res.redirect('/');
+});
 
 
 export default router;

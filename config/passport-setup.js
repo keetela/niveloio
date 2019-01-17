@@ -15,16 +15,14 @@ passport.serializeUser((user, done) => {
 
 // deserialize user
 passport.deserializeUser((id, done) => {
-    if(!err) done(null, id);
-    else done(err, null)
-    // queryuser
-    // .findById(id)
-    // .then(user => {
-    //     done(null, user);
-    // })
-    // .catch(error => {
-    //   console.log(`Error: ${error}`);
-    // });
+    queryuser
+    .findById(id)
+    .then(user => {
+        done(null, user);
+    })
+    .catch(error => {
+      console.log(`Error: ${error}`);
+    });
 });
 
 passport.use(
@@ -40,25 +38,24 @@ passport.use(
             names: `${profile.name.familyName} ${profile.name.givenName}`,
             googleId: profile.id
         }
-        console.log(`profile`);
-        // // check user existance
-        // queryuser
-        // .findGoogleUser(userinfo)
-        // .then((user) => {
-        //     if(user){
-        //        //console.log(`User exists`);
-        //        done(null,user);
-        //     }else{
-        //         // User not found, start creating him..
-        //         queryuser
-        //         .createGoogleUser(userinfo)
-        //         .then((newUser) => {
-        //             if(newUser){
-        //                 //console.log(`No user to register ${user.id}`);
-        //                 done(null,newUser);
-        //             }                    
-        //         })
-        //     }
-        // });
+        // check user existance
+        queryuser
+        .findGoogleUser(userinfo)
+        .then((user) => {
+            if(user){
+               //console.log(`User exists`);
+               done(null,user);
+            }else{
+                // User not found, start creating him..
+                queryuser
+                .createGoogleUser(userinfo)
+                .then((newUser) => {
+                    if(newUser){
+                        //console.log(`No user to register ${user.id}`);
+                        done(null,newUser);
+                    }                    
+                })
+            }
+        });
     })
 );

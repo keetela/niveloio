@@ -1,9 +1,6 @@
 /* eslint linebreak-style: ["error", "windows"] */
 import express from 'express';
 import morgan from 'morgan';
-// calling routes
-import routers from './routes/router';
-
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
@@ -25,8 +22,12 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+// calling routes
+import routers from './routes/router';
 // register routes
 app.use(routers);
+
 
 const PORT = process.env.PORT || 3000;
 
@@ -34,11 +35,19 @@ import  exphbs from 'express-handlebars';
 import path from 'path';
 
 // View engine setup
-app.engine('handlebars', exphbs());
+// app.engine('handlebars', exphbs());
+app.engine('handlebars', exphbs({
+  defaultLayout: 'main',
+  partialsDir: [
+    'views/includes/'
+  ]
+}));
 app.set('view engine', 'handlebars');
+
 
 // Static folder
 app.use('/public', express.static(path.join(__dirname, 'public')));
+
 
 
 // error handler
@@ -49,11 +58,8 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  console.log(err.message)
-  res.status = 500;
-  res.json({
-    message: err.message,
-    error: err.status,
+  res.status(500).send({
+    message: err.message
   });
 });
 

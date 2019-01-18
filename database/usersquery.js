@@ -41,11 +41,17 @@ const findById = (id) => Users()
   })
   .first();
 
+// set username
+const updateUsername = (user) => Users()
+  .update('username', user.username)
+  .where('id', '=', user.id);
+
 module.exports = {
    create,
    login,
    findGoogleUser,
    createGoogleUser,
    findById,
+   updateUsername,
    getAll
 };

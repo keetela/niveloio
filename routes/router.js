@@ -64,7 +64,7 @@ router.get('/auth/google', passport.authenticate('google',{
 
 //callback route for google to redirect to 
 router.get('/auth/google/redirect', passport.authenticate('google'), (req, res) => {
- res.send(`This is kanaan`);
+ res.send(`user autheticated`);
 });
 // logout
 router.get('/auth/logout', (req, res) =>{

@@ -1,18 +1,14 @@
 import passport  from 'passport';
-
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-
 import queryuser from '../database/usersquery';
 // manage auth
 const dotenv = require('dotenv');
 // Update with your config settings.
 dotenv.config();
-
 // serialize user
 passport.serializeUser((user, done) => {
     done(null, user.id);
 });
-
 // deserialize user
 passport.deserializeUser((id, done) => {
     queryuser
@@ -20,11 +16,11 @@ passport.deserializeUser((id, done) => {
     .then(user => {
         done(null, user);
     })
-    .catch(error => {
-      console.log(`Error: ${error}`);
+    .catch(err => {
+      done(err);
     });
 });
-
+// Passport Strategies
 passport.use(
     new GoogleStrategy({
         // options for google strategy

@@ -4,9 +4,6 @@ import morgan from 'morgan';
 // calling routes
 import routers from './routes/router';
 
-import passport  from 'passport';
-// cookie
-const cookieSession = require('cookie-session');
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
@@ -15,12 +12,16 @@ app.use(morgan('dev'));
 
 
 
+import passport  from 'passport';
+// // cookie
+const cookieSession = require('cookie-session');
+
 app.use(cookieSession({
   maxAge: 24*60*60*1000,
   keys: [process.env.COOKIE_KEY]
 }));
 
-// // initialize passport
+// initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -40,7 +41,6 @@ app.set('view engine', 'handlebars');
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 
-
 // error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
@@ -49,10 +49,11 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  console.log(err.message);
+  console.log(err.message)
   res.status = 500;
   res.json({
-    message: err.message
+    message: err.message,
+    error: err.status,
   });
 });
 

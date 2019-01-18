@@ -26,6 +26,31 @@ export default class User {
       });
     });
   }
+  // set up username
+  static setUsername(req, res, next) {
+    // validate user
+    // const {error} = validateUsername(req.body);
+    // if(error){
+    //     res.status(400).send({
+    //       message:error.details[0].message
+    //     });
+    //     return;
+    // }
+    const user = {
+      username: req.body.username,
+      id: req.body.id
+    }  
+    // let message = '';  
+    queryuser
+    .updateUsername(user)
+    .then((user) => { 
+    res.redirect('/me');
+    }).catch(error => {
+      if (error.routine === '_bt_check_unique') {
+        res.redirect('/me');
+      }
+    })
+  }
   // sign up new user
   static createUser(req, res) { 
     // validate user
@@ -144,6 +169,15 @@ function validateLogin(user){
   const schema = {
       email: Joi.string().email().min(6).max(30).required(),
       password: Joi.string()
+      
+  };
+  return Joi.validate(user, schema);
+}
+// validating validateUsername
+function validateUsername(user){
+  const schema = {
+      username: Joi.string().min(6).max(30).required(),
+      id: Joi.number().min(1).required()
       
   };
   return Joi.validate(user, schema);

@@ -1,46 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <title>Welcome to Nivelo</title>
-   <link rel="icon" href="public/images/icon.png">
-   <!-- Compiled and minified CSS -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-   <!-- Compiled and minified JavaScript -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-   <link rel="stylesheet" href="public/css/layout.css">
-</head>
-<body>
-  <nav class="white">
-    <div class="container">
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo black-text">NICELO</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/auth/google" class="black-text ">Login</a></li>
-      </ul>
-    </div>
-    </div>
-  </nav>
-   <div class="valign-wrapper wrapper">
-      <div class="row center-align">
-         <h5>Login</h5>
-         <br>
-         
-      </div>
-   </div>
-</body>
-</html>
-
-<script>
-  $(document).ready(function(){
-     var h = $(this).height();
-     $(".wrapper").css("height",h+"px");
-     $(window).resize(function(){
-        var h = $(this).height();
-      $(".wrapper").css("height",h+"px");
-     })
-  })
-</script>
+<div class="row center-align">
+      <h5>LOGIN</h5>
+      <br>
+      <a href="/auth/google" class="black-text white btn">Google+</a>
+</div>

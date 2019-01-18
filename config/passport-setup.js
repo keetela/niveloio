@@ -39,7 +39,6 @@ passport.use(
         .findGoogleUser(userinfo)
         .then((user) => {
             if(user){
-               //console.log(`User exists`);
                done(null,user);
             }else{
                 // User not found, start creating him..

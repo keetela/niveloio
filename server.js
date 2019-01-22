@@ -49,7 +49,6 @@ app.set('view engine', 'handlebars');
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 
-
 // error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');

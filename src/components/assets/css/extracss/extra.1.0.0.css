@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+/* navbar */
+.navbar-drop-content{width:350px!important}
+
+
 a{color: #000000}
 .clear{clear: both;}
 .bold{font-weight: 700}
@@ -6,12 +11,18 @@ a{color: #000000}
 .np{padding: 0!important}
 .nm{margin: 0!important}
 .nb{border:none!important}
+
+.header{box-shadow:0 0 2px 2px rgba(0,0,0,0.08);border-bottom:2px solid #fefefe}
 /* company logo */
-.logo{margin:0;overflow: hidden;}
-.logo img{height: auto;;}
+.logo{margin:4px 0;float:left;width:183px;height:55px;overflow: hidden;}
+.logo img{width:183px;height:55px;}
 /*logo*/
 .image{width: 100%;}
 .image img{width: 100%;height: auto}
+.image.center{display:block;margin:0 auto;}
+
+
+
 h1,h2,h3,h4,h5{font-family: 'Ubuntu', sans-serif;}
 
 /*text font size*/
@@ -71,4 +82,14 @@ h1,h2,h3,h4,h5{font-family: 'Ubuntu', sans-serif;}
 /* blog post */
 .onepost{margin:25px 0;}
 .onepost .lead, .onepost .tags{margin:10px 0}
-.onepost .image.center{display:block;margin:0 auto;max-width:140px}
+.onepost .image{max-width:140px}
+
+
+ul.select-dropdown,ul.dropdown-content{
+   width:280px!important;
+}
+
+.wrappost{font-size: 135%;max-width: 100%;}
+.wrappost blockquote{font-style: italic;border-left:5px solid #545454}
+.wrappost p{padding:10px 0}
+.wrappost img{margin:5px 0;width:auto;max-width: 100%;height: auto}

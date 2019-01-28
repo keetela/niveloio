@@ -1,7 +1,5 @@
 # Niveloio [![Build Status](https://travis-ci.com/niveloio/niveloio.svg?branch=develop)](https://travis-ci.com/niveloio/niveloio) [![Coverage Status](https://coveralls.io/repos/github/niveloio/niveloio/badge.svg?branch=develop&kill-cache=1)](https://coveralls.io/github/niveloio/niveloio?branch=develop&service=github) [![Maintainability](https://api.codeclimate.com/v1/badges/57a880b0b1fbcf7dc89e/maintainability)](https://codeclimate.com/github/niveloio/niveloio/maintainability) [![dependencies Status](https://david-dm.org/expressjs/express/status.svg)](https://david-dm.org/expressjs/express)
 
-![](./logo.jpg)
-
 # Niveloio API Standards
 
 - [Setup Instructions](#instructions)
